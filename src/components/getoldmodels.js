@@ -18,27 +18,22 @@ function FieldGroup({id, label, help, ...props}) {
     );
   }
 
-class SendModel extends Component {
+class OldModels extends Component {
 
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state={model_name:"models.py", person_name:"Camilo Ernesto"}
+    this.state={person_name:"Camilo Ernesto", models=[]}
   }
 
 
   handleSubmit() {
     var data = new FormData();
-    var fileData = document.querySelector('input[type="file"]').files[0];
-    data.append("model", fileData);
-    data.append("model_name", this.state.model_name);
     data.append("person_name", this.state.person_name);
-    console.log("FILE DATA:")
-    console.log(fileData);
     $.ajax({
       method: "POST",
-      url:"http://localhost:8080/api/djmodels",
+      url:"http://localhost:8080/api/djmodels/person/",
       data: data,
       cache: false,
       contentType:false,
@@ -80,16 +75,7 @@ class SendModel extends Component {
   render() {
     return (
     <div>
-    <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
-      <FieldGroup
-        id="nombre_modelo"
-        name="model_name"
-        type="text"
-        label="Nombre del modelo"
-        placeholder="models.py"
-        onChange={this.handleChange}
-        value={this.state.model_name}
-      />
+    <form onSubmit={this.handleSubmit}>
       <FieldGroup
         id="nombre_persona"
         name="person_name"
@@ -99,18 +85,12 @@ class SendModel extends Component {
         value={this.state.person_name}
         onChange={this.handleChange}
       />
-      <FieldGroup
-        id="model"
-        type="file"
-        label="UML"
-        help="Sube aquí tu modelo"
-        name="model"
-      />
     </form>
     <button bsStyle= "primary" onClick={this.handleSubmit}>Enviar</button>
+    <ul className="col-md-4 list-group">{models}</ul>
     </div>
     )
   }
 }
 
-export default SendModel
+export default OldModels

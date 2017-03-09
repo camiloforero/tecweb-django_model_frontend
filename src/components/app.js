@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import SendModel from './sendmodel';
 
 var Highlight = require('react-highlight');
+var rb = require('react-bootstrap');
+var Grid = rb.Grid;
+var PageHeader = rb.PageHeader
+var Col = rb.Col
+
 
 class App extends Component {
 
@@ -13,13 +18,17 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Django model generator</h1>
-        <SendModel text={this.state.text} codigo={this.state.codigo} ponerCodigo={(codigo) => {this.setState({codigo: codigo})}}/>
-        <Highlight className='python'>
-          {this.state.codigo}
-        </Highlight>
-      </div>
+      <Grid>
+        <PageHeader>Welcome to the Django model generator</PageHeader>
+        <Col xs={12} sm={4}>
+          <SendModel text={this.state.text} codigo={this.state.codigo} ponerCodigo={(codigo) => {this.setState({codigo: codigo})}}/>
+        </Col>
+        <Col xs={12} sm={8}>
+          <Highlight className='python'>
+            {this.state.codigo}
+          </Highlight>
+        </Col>
+      </Grid>
     );
   }
 }
