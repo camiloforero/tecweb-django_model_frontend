@@ -38,7 +38,7 @@ class SendModel extends Component {
     console.log(fileData);
     $.ajax({
       method: "POST",
-      url:"http://localhost:8080/api/djmodels",
+      url:"http://djmodels.camiloforero.me/api/djmodels",
       data: data,
       cache: false,
       contentType:false,

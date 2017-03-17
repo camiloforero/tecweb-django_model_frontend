@@ -33,7 +33,7 @@ class OldModels extends Component {
     data.append("person_name", this.state.person_name);
     $.ajax({
       method: "POST",
-      url:"http://localhost:8080/api/djmodels/person/",
+      url:"http://djmodels.camiloforero.me/api/djmodels/person/",
       data: data,
       cache: false,
       contentType:false,
