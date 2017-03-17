@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SendModel from './sendmodel';
+import OldModels from './oldmodels';
 
 var Highlight = require('react-highlight');
 var rb = require('react-bootstrap');
@@ -27,6 +28,9 @@ class App extends Component {
           <Highlight className='python'>
             {this.state.codigo}
           </Highlight>
+        </Col>
+        <Col xs={12} sm={8}>
+            <OldModels ponerCodigo={(codigo=> {this.setState({codigo:codigo})}}/>
         </Col>
       </Grid>
     );
